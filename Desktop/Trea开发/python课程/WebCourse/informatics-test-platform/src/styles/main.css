@@ -1,0 +1,244 @@
+/* 延安科创升学网 - 蓝白主题样式 */
+
+:root {
+    --primary-blue: #1976d2;
+    --primary-blue-dark: #1565c0;
+    --primary-blue-light: #42a5f5;
+    --secondary-blue: #2196f3;
+    --accent-blue: #03a9f4;
+    --white: #ffffff;
+    --gray-light: #f8f9fa;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --success: #28a745;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --info: #17a2b8;
+}
+
+/* 基础重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--gray-dark);
+    background: linear-gradient(135deg, var(--white) 0%, var(--gray-light) 100%);
+    min-height: 100vh;
+}
+
+/* 导航栏样式 */
+.navbar-brand .site-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--white);
+    margin: 0;
+}
+
+.bg-primary {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: var(--white) !important;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    opacity: 0.8;
+}
+
+/* 主内容区域 */
+.main-content {
+    flex: 1;
+}
+
+/* 英雄区域 */
+.hero-section {
+    padding: 4rem 0;
+    background: var(--white);
+}
+
+.min-vh-80 {
+    min-height: 80vh;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary-blue);
+    margin-bottom: 1.5rem;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    color: var(--gray);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.hero-buttons {
+    margin-top: 2rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+}
+
+.btn-outline-primary {
+    border: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+    border-radius: 8px;
+    padding: 10px 28px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.placeholder-image {
+    text-align: center;
+    padding: 3rem;
+    background: linear-gradient(135deg, var(--gray-light) 0%, var(--white) 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 特性区域 */
+.features-section {
+    background: linear-gradient(135deg, var(--white) 0%, var(--gray-light) 100%);
+}
+
+.feature-card {
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(25, 118, 210, 0.15);
+}
+
+.feature-card h4 {
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: var(--gray);
+}
+
+/* 表单样式 */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-blue) 50%, var(--primary-blue-dark) 100%);
+    padding: 2rem;
+}
+
+.auth-card {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-logo h2 {
+    color: var(--primary-blue);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.auth-logo p {
+    color: var(--gray);
+}
+
+.form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--gray-dark);
+    margin-bottom: 0.5rem;
+}
+
+/* 页脚 */
+.footer {
+    background: linear-gradient(135deg, var(--gray-dark) 0%, #2c3e50 100%);
+    margin-top: auto;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-description {
+        font-size: 1.1rem;
+    }
+    
+    .auth-card {
+        padding: 2rem;
+        margin: 1rem;
+    }
+    
+    .feature-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* 工具类 */
+.text-primary {
+    color: var(--primary-blue) !important;
+}
+
+.bg-gradient-blue {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+}
+
+.shadow-custom {
+    box-shadow: 0 10px 30px rgba(25, 118, 210, 0.15);
+}

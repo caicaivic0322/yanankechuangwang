@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>认证测试 - 延安科创升学网</title>
+    <link rel="stylesheet" href="src/styles/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <h1 class="site-title">延安科创升学网</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNavigation">
+                    <!-- 导航栏将由JavaScript动态生成 -->
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content py-4">
+        <div class="container">
+            <h2>认证系统测试</h2>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">当前认证状态</h5>
+                            <div id="authStatus">
+                                <p>检测中...</p>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary" onclick="testAuth()">
+                                    测试认证状态
+                                </button>
+                                <button class="btn btn-success" onclick="simulateLogin()">
+                                    模拟登录
+                                </button>
+                                <button class="btn btn-danger" onclick="simulateLogout()">
+                                    模拟退出
+                                </button>
+                                <button class="btn btn-info" onclick="clearStorage()">
+                                    清除存储
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">存储内容</h5>
+                            <pre id="storageContent" class="bg-light p-3">加载中...</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">页面跳转测试</h5>
+                            <div class="d-grid gap-2">
+                                <a href="index.html" class="btn btn-outline-primary">首页</a>
+                                <a href="login.html" class="btn btn-outline-primary">登录页</a>
+                                <a href="register.html" class="btn btn-outline-primary">注册页</a>
+                                <a href="dashboard.html" class="btn btn-outline-primary">仪表板</a>
+                                <a href="problems.html" class="btn btn-outline-primary">题库</a>
+                                <a href="tests.html" class="btn btn-outline-primary">测试</a>
+                                <a href="results.html" class="btn btn-outline-primary">成绩</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 延安科创升学网. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/js/main.js"></script>
+    <script>
+        function updateAuthStatus() {
+            const authManager = window.authManager;
+            const statusDiv = document.getElementById('authStatus');
+            const storagePre = document.getElementById('storageContent');
+            
+            if (!authManager) {
+                statusDiv.innerHTML = '<div class="alert alert-danger">authManager 未定义</div>';
+                return;
+            }
+            
+            // 显示认证状态
+            const isLoggedIn = authManager.isLoggedIn();
+            statusDiv.innerHTML = `
+                <div class="alert alert-${isLoggedIn ? 'success' : 'warning'}">
+                    <strong>登录状态:</strong> ${isLoggedIn ? '已登录' : '未登录'}
+                </div>
+                <div class="mt-2">
+                    <strong>当前用户:</strong><br>
+                    <pre class="bg-light p-2 mt-2">${JSON.stringify(authManager.currentUser, null, 2) || 'null'}</pre>
+                </div>
+            `;
+            
+            // 显示存储内容
+            const storageData = {};
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                storageData[key] = localStorage.getItem(key);
+            }
+            storagePre.textContent = JSON.stringify(storageData, null, 2);
+        }
+        
+        function testAuth() {
+            console.log('=== 认证测试开始 ===');
+            console.log('authManager:', window.authManager);
+            console.log('登录状态:', window.authManager?.isLoggedIn());
+            console.log('当前用户:', window.authManager?.currentUser);
+            console.log('localStorage:', Object.fromEntries(
+                Object.keys(localStorage).map(key => [key, localStorage.getItem(key)])
+            ));
+            console.log('=== 认证测试结束 ===');
+            
+            updateAuthStatus();
+        }
+        
+        function simulateLogin() {
+            const userData = {
+                email: 'test@example.com',
+                firstName: '测试',
+                lastName: '用户',
+                loginTime: new Date().toISOString()
+            };
+            
+            if (window.authManager) {
+                window.authManager.saveUser(userData);
+                alert('模拟登录成功！');
+                updateAuthStatus();
+            } else {
+                alert('authManager 未初始化');
+            }
+        }
+        
+        function simulateLogout() {
+            if (window.authManager) {
+                window.authManager.logout();
+                alert('已退出登录');
+                updateAuthStatus();
+            } else {
+                alert('authManager 未初始化');
+            }
+        }
+        
+        function clearStorage() {
+            if (confirm('确定要清除所有本地存储数据吗？')) {
+                localStorage.clear();
+                alert('存储已清除');
+                updateAuthStatus();
+            }
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                updateAuthStatus();
+                testAuth();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

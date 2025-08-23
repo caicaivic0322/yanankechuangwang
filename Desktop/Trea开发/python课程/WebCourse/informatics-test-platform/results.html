@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成绩统计 - 延安科创升学网</title>
+    <link rel="stylesheet" href="src/styles/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <h1 class="site-title">延安科创升学网</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNavigation">
+                    <!-- 导航栏将由JavaScript动态生成 -->
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content py-4">
+        <div class="container">
+            <!-- 页面标题 -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="mb-0">
+                        <i class="fas fa-chart-line me-2 text-primary"></i>成绩统计
+                    </h2>
+                    <p class="text-muted">查看您的学习进度和成绩分析</p>
+                </div>
+            </div>
+
+            <!-- 统计概览 -->
+            <div class="row mb-4">
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <div class="text-primary mb-2">
+                                <i class="fas fa-check-circle fa-3x"></i>
+                            </div>
+                            <h2 class="text-primary">42</h2>
+                            <p class="text-muted">已完成测试</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <div class="text-success mb-2">
+                                <i class="fas fa-trophy fa-3x"></i>
+                            </div>
+                            <h2 class="text-success">85%</h2>
+                            <p class="text-muted">平均正确率</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <div class="text-warning mb-2">
+                                <i class="fas fa-clock fa-3x"></i>
+                            </div>
+                            <h2 class="text-warning">15</h2>
+                            <p class="text-muted">进行中测试</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <div class="text-info mb-2">
+                                <i class="fas fa-ranking-star fa-3x"></i>
+                            </div>
+                            <h2 class="text-info">25</h2>
+                            <p class="text-muted">当前排名</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- 成绩趋势图 -->
+                <div class="col-lg-8 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-white">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-chart-line me-2"></i>成绩趋势
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="scoreTrendChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 难度分布 -->
+                <div class="col-lg-4 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-white">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-pie-chart me-2"></i>难度分布
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="difficultyChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- 分类正确率 -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-white">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-bar-chart me-2"></i>分类正确率
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="categoryChart" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 最近测试 -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-white">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-history me-2"></i>最近测试
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>测试名称</th>
+                                            <th>分数</th>
+                                            <th>时间</th>
+                                            <th>状态</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>二分查找算法测试</td>
+                                            <td>95/100</td>
+                                            <td>2分钟前</td>
+                                            <td><span class="badge bg-success">已完成</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>动态规划进阶测试</td>
+                                            <td>78/100</td>
+                                            <td>1小时前</td>
+                                            <td><span class="badge bg-success">已完成</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>链表操作专项测试</td>
+                                            <td>进行中</td>
+                                            <td>2小时前</td>
+                                            <td><span class="badge bg-warning">进行中</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Python基础语法测试</td>
+                                            <td>88/100</td>
+                                            <td>3小时前</td>
+                                            <td><span class="badge bg-success">已完成</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>图论算法综合测试</td>
+                                            <td>65/100</td>
+                                            <td>5小时前</td>
+                                            <td><span class="badge bg-success">已完成</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 详细成绩列表 -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-white">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-list me-2"></i>所有成绩记录
+                            </h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>测试名称</th>
+                                            <th>难度</th>
+                                            <th>分数</th>
+                                            <th>正确率</th>
+                                            <th>用时</th>
+                                            <th>完成时间</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>二分查找算法测试</td>
+                                            <td><span class="badge bg-success">简单</span></td>
+                                            <td>95/100</td>
+                                            <td>95%</td>
+                                            <td>25分钟</td>
+                                            <td>2024-01-15 14:30</td>
+                                            <td>
+                                                <a href="test-result.html?id=1" class="btn btn-sm btn-outline-primary">
+                                                    查看详情
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>动态规划进阶测试</td>
+                                            <td><span class="badge bg-danger">困难</span></td>
+                                            <td>78/100</td>
+                                            <td>78%</td>
+                                            <td>55分钟</td>
+                                            <td>2024-01-15 13:15</td>
+                                            <td>
+                                                <a href="test-result.html?id=2" class="btn btn-sm btn-outline-primary">
+                                                    查看详情
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Python基础语法测试</td>
+                                            <td><span class="badge bg-success">简单</span></td>
+                                            <td>88/100</td>
+                                            <td>88%</td>
+                                            <td>35分钟</td>
+                                            <td>2024-01-15 11:45</td>
+                                            <td>
+                                                <a href="test-result.html?id=3" class="btn btn-sm btn-outline-primary">
+                                                    查看详情
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>图论算法综合测试</td>
+                                            <td><span class="badge bg-danger">困难</span></td>
+                                            <td>65/100</td>
+                                            <td>65%</td>
+                                            <td>85分钟</td>
+                                            <td>2024-01-14 16:20</td>
+                                            <td>
+                                                <a href="test-result.html?id=4" class="btn btn-sm btn-outline-primary">
+                                                    查看详情
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>NOIP历年真题精选</td>
+                                            <td><span class="badge bg-warning">中等</span></td>
+                                            <td>82/100</td>
+                                            <td>82%</td>
+                                            <td>110分钟</td>
+                                            <td>2024-01-14 14:00</td>
+                                            <td>
+                                                <a href="test-result.html?id=5" class="btn btn-sm btn-outline-primary">
+                                                    查看详情
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center mb-0">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">上一页</a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="#">1</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">3</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">下一页</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 延安科创升学网. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/js/main.js"></script>
+    <script>
+        // 成绩统计页面特定功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 成绩趋势图
+            const scoreTrendCtx = document.getElementById('scoreTrendChart').getContext('2d');
+            const scoreTrendChart = new Chart(scoreTrendCtx, {
+                type: 'line',
+                data: {
+                    labels: ['1月10日', '1月11日', '1月12日', '1月13日', '1月14日', '1月15日'],
+                    datasets: [{
+                        label: '每日平均分',
+                        data: [75, 82, 78, 85, 88, 92],
+                        borderColor: '#1976d2',
+                        backgroundColor: 'rgba(25, 118, 210, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 60,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // 难度分布图
+            const difficultyCtx = document.getElementById('difficultyChart').getContext('2d');
+            const difficultyChart = new Chart(difficultyCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['简单', '中等', '困难'],
+                    datasets: [{
+                        data: [45, 35, 20],
+                        backgroundColor: [
+                            '#28a745',
+                            '#ffc107',
+                            '#dc3545'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // 分类正确率图
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            const categoryChart = new Chart(categoryCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['算法', '数据结构', '编程基础', '竞赛真题'],
+                    datasets: [{
+                        label: '正确率 (%)',
+                        data: [85, 78, 92, 80],
+                        backgroundColor: [
+                            'rgba(25, 118, 210, 0.8)',
+                            'rgba(40, 167, 69, 0.8)',
+                            'rgba(255, 193, 7, 0.8)',
+                            'rgba(220, 53, 69, 0.8)'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // 表格排序功能
+            const sortableHeaders = document.querySelectorAll('th[data-sort]');
+            sortableHeaders.forEach(header => {
+                header.style.cursor = 'pointer';
+                header.addEventListener('click', function() {
+                    const sortBy = this.getAttribute('data-sort');
+                    const isAscending = this.getAttribute('data-order') === 'asc';
+                    
+                    // 切换排序顺序
+                    this.setAttribute('data-order', isAscending ? 'desc' : 'asc');
+                    
+                    // 实际项目中这里会调用排序函数
+                    alert('按 ' + sortBy + ' ' + (isAscending ? '降序' : '升序') + ' 排序');
+                });
+            });
+        });
+    </script>
+
+    <style>
+        .card {
+            border-radius: 15px;
+        }
+        
+        .card-header {
+            border-radius: 15px 15px 0 0 !important;
+        }
+        
+        .table th {
+            border-top: none;
+            font-weight: 600;
+            color: var(--gray-dark);
+            cursor: pointer;
+        }
+        
+        .table th:hover {
+            background-color: var(--gray-light);
+        }
+        
+        .table td {
+            vertical-align: middle;
+        }
+        
+        .badge {
+            font-size: 0.75rem;
+        }
+        
+        .pagination .page-link {
+            color: var(--primary-blue);
+            border: 1px solid var(--gray-light);
+        }
+        
+        .pagination .page-item.active .page-link {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+        
+        canvas {
+            max-width: 100%;
+        }
+    </style>
+</body>
+</html>

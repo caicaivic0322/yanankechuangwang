@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试中心 - 延安科创升学网</title>
+    <link rel="stylesheet" href="src/styles/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <h1 class="site-title">延安科创升学网</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNavigation">
+                    <!-- 导航栏将由JavaScript动态生成 -->
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content py-4">
+        <div class="container">
+            <!-- 页面标题 -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="mb-0">
+                        <i class="fas fa-file-alt me-2 text-primary"></i>测试中心
+                    </h2>
+                    <p class="text-muted">选择测试开始练习，提升编程能力</p>
+                </div>
+            </div>
+
+            <!-- 测试分类 -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-outline-primary active" data-category="all">
+                            全部测试
+                        </button>
+                        <button class="btn btn-outline-primary" data-category="algorithm">
+                            算法测试
+                        </button>
+                        <button class="btn btn-outline-primary" data-category="data-structure">
+                            数据结构
+                        </button>
+                        <button class="btn btn-outline-primary" data-category="programming">
+                            编程基础
+                        </button>
+                        <button class="btn btn-outline-primary" data-category="competition">
+                            竞赛真题
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 测试卡片网格 -->
+            <div class="row">
+                <!-- 测试卡片 1 -->
+                <div class="col-xl-4 col-md-6 mb-4" data-category="algorithm">
+                    <div class="card test-card border-0 shadow-sm h-100">
+                        <div class="card-header bg-white">
+                            <span class="badge bg-success">简单</span>
+                            <span class="badge bg-info ms-2">算法</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">二分查找算法测试</h5>
+                            <p class="card-text text-muted">
+                                掌握二分查找的核心思想，提高搜索效率
+                            </p>
+                            <div class="test-info">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span><i class="fas fa-question-circle me-1"></i> 10 道题</span>
+                                    <span><i class="fas fa-clock me-1"></i> 30 分钟</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span><i class="fas fa-users me-1"></i> 856 人参与</span>
+                                    <span><i class="fas fa-star me-1 text-warning"></i> 4.8</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <div class="d-grid gap-2">
+                                <a href="test-start.html?id=1" class="btn btn-primary">
+                                    <i class="fas fa-play me-2"></i>开始测试
+                                </a>
+                                <a href="test-preview.html?id=1" class="btn btn-outline-secondary">
+                                    <i class="fas fa-eye me-2"></i>预览题目
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 测试卡片 2 -->
+                <div class="col-xl-4 col-md-6 mb-4" data-category="data-structure">
+                    <div class="card test-card border-0 shadow-sm h-100">
+                        <div class="card-header bg-white">
+                            <span class="badge bg-warning">中等</span>
+                            <span class="badge bg-info ms-2">数据结构</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">链表操作专项测试</h5>
+                            <p class="card-text text-muted">
+                                链表的基本操作和高级应用题目集合
+                            </p>
+                            <div class="test-info">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span><i class="fas fa-question-circle me-1"></i> 15 道题</span>
+                                    <span><i class="fas fa-clock me-1"></i> 45 分钟</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span><i class="fas fa-users me-1"></i> 642 人参与</span>
+                                    <span><i class="fas fa-star me-1 text-warning"></i> 4.6</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <div class="d-grid gap-2">
+                                <a href="test-start.html?id=2" class="btn btn-primary">
+                                    <i class="fas fa-play me-2"></i>开始测试
+                                </a>
+                                <a href="test-preview.html?id=2" class="btn btn-outline-secondary">
+                                    <i class="fas fa-eye me-2"></i>预览题目
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 测试卡片 3 -->
+                <div class="col-xl-4 col-md-6 mb-4" data-category="algorithm">
+                    <div class="card test-card border-0 shadow-sm h-100">
+                        <div class="card-header bg-white">
+                            <span class="badge bg-danger">困难</span>
+                            <span class="badge bg-info ms-2">算法</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">动态规划进阶测试</h5>
+                            <p class="card-text text-muted">
+                                挑战复杂的动态规划问题，提升问题解决能力
+                            </p>
+                            <div class="test-info">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span><i class="fas fa-question-circle me-1"></i> 8 道题</span>
+                                    <span><i class="fas fa-clock me-1"></i> 60 分钟</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span><i class="fas fa-users me-1"></i> 324 人参与</span>
+                                    <span><i class="fas fa-star me-1 text-warning"></i> 4.9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <div class="d-grid gap-2">
+                                <a href="test-start.html?id=3" class="btn btn-primary">
+                                    <i class="fas fa-play me-2"></i>开始测试
+                                </a>
+                                <a href="test-preview.html?id=3" class="btn btn-outline-secondary">
+                                    <i class="fas fa-eye me-2"></i>预览题目
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 测试卡片 4 -->
+                <div class="col-xl-4 col-md-6 mb-4" data-category="programming">
+                    <div class="card test-card border-0 shadow-sm h-100">
+                        <div class="card-header bg-white">
+                            <span class="badge bg-success">简单</span>
+                            <span class="badge bg-info ms-2">编程基础</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Python基础语法测试</h5>
+                            <p class="card-text text-muted">
+                                Python语言基础语法和常用功能测试
+                            </p>
+                            <div class="test-info">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span><i class="fas fa-question-circle me-1"></i> 20 道题</span>
+                                    <span><i class="fas fa-clock me-1"></i> 40 分钟</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span><i class="fas fa-users me-1"></i> 1289 人参与</span>
+                                    <span><i class="fas fa-star me-1 text-warning"></i> 4.7</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <div class="d-grid gap-2">
+                                <a href="test-start.html?id=4" class="btn btn-primary">
+                                    <i class="fas fa-play me-2"></i>开始测试
+                                </a>
+                                <a href="test-preview.html?id=4" class="btn btn-outline-secondary">
+                                    <i class="fas fa-eye me-2"></i>预览题目
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 测试卡片 5 -->
+                <div class="col-xl-4 col-md-6 mb-4" data-category="competition">
+                    <div class="card test-card border-0 shadow-sm h-100">
+                        <div class="card-header bg-white">
+                            <span class="badge bg-warning">中等</span>
+                            <span class="badge bg-info ms-2">竞赛真题</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">NOIP历年真题精选</h5>
+                            <p class="card-text text-muted">
+                                全国青少年信息学奥林匹克联赛经典题目
+                            </p>
+                            <div class="test-info">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span><i class="fas fa-question-circle me-1"></i> 25 道题</span>
+                                    <span><i class="fas fa-clock me-1"></i> 120 分钟</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span><i class="fas fa-users me-1"></i> 2156 人参与</span>
+                                    <span><i class="fas fa-star me-1 text-warning"></i> 4.8</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <div class="d-grid gap-2">
+                                <a href="test-start.html?id=5" class="btn btn-primary">
+                                    <i class="fas fa-play me-2"></i>开始测试
+                                </a>
+                                <a href="test-preview.html?id=5" class="btn btn-outline-secondary">
+                                    <i class="fas fa-eye me-2"></i>预览题目
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 测试卡片 6 -->
+                <div class="col-xl-4 col-md-6 mb-4" data-category="data-structure">
+                    <div class="card test-card border-0 shadow-sm h-100">
+                        <div class="card-header bg-white">
+                            <span class="badge bg-danger">困难</span>
+                            <span class="badge bg-info ms-2">数据结构</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">图论算法综合测试</h5>
+                            <p class="card-text text-muted">
+                                深度优先搜索、广度优先搜索、最短路径等图论算法
+                            </p>
+                            <div class="test-info">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span><i class="fas fa-question-circle me-1"></i> 12 道题</span>
+                                    <span><i class="fas fa-clock me-1"></i> 90 分钟</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span><i class="fas fa-users me-1"></i> 487 人参与</span>
+                                    <span><i class="fas fa-star me-1 text-warning"></i> 4.5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <div class="d-grid gap-2">
+                                <a href="test-start.html?id=6" class="btn btn-primary">
+                                    <i class="fas fa-play me-2"></i>开始测试
+                                </a>
+                                <a href="test-preview.html?id=6" class="btn btn-outline-secondary">
+                                    <i class="fas fa-eye me-2"></i>预览题目
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分页 -->
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">上一页</a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">下一页</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 延安科创升学网. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/js/main.js"></script>
+    <script>
+        // 测试页面特定功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 分类筛选
+            const categoryButtons = document.querySelectorAll('[data-category]');
+            const testCards = document.querySelectorAll('.test-card');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 移除所有按钮的active类
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    // 为当前按钮添加active类
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    filterTests(category);
+                });
+            });
+            
+            function filterTests(category) {
+                testCards.forEach(card => {
+                    const cardCategory = card.parentElement.getAttribute('data-category');
+                    if (category === 'all' || category === cardCategory) {
+                        card.parentElement.style.display = 'block';
+                    } else {
+                        card.parentElement.style.display = 'none';
+                    }
+                });
+            }
+            
+            // 测试卡片悬停效果
+            testCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 10px 30px rgba(25, 118, 210, 0.2)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.08)';
+                });
+            });
+        });
+    </script>
+
+    <style>
+        .test-card {
+            transition: all 0.3s ease;
+            border-radius: 15px;
+        }
+        
+        .test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(25, 118, 210, 0.2) !important;
+        }
+        
+        .test-card .card-header {
+            border-radius: 15px 15px 0 0 !important;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .test-card .card-footer {
+            border-radius: 0 0 15px 15px !important;
+            border-top: 1px solid var(--gray-light);
+        }
+        
+        .test-info {
+            background-color: var(--gray-light);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .test-info span {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .btn-outline-primary.active {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+        
+        .pagination .page-link {
+            color: var(--primary-blue);
+            border: 1px solid var(--gray-light);
+        }
+        
+        .pagination .page-item.active .page-link {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+    </style>
+</body>
+</html>
